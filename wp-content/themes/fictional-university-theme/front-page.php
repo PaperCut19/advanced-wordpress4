@@ -18,7 +18,7 @@
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
 <?php
 $homepageEvents = new WP_Query([
-    "posts_per_page" => 2,
+    "posts_per_page" => 3,
     "post_type" => "event",
 ]);
 
@@ -35,10 +35,11 @@ while ($homepageEvents->have_posts()) {
                 </a>
                 <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                    <p><?php echo wp_trim_words(
-                        get_the_content(),
-                        18,
-                    ); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
+                    <p><?php if (has_excerpt()) {
+                        echo get_the_excerpt();
+                    } else {
+                        echo wp_trim_words(get_the_content(), 18);
+                    } ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
                 </div>
             </div>
     <?php
@@ -57,7 +58,7 @@ while ($homepageEvents->have_posts()) {
 
             <?php
             $homepagePosts = new WP_Query([
-                "posts_per_page" => 2,
+                "posts_per_page" => 3,
             ]);
 
             while ($homepagePosts->have_posts()) {
@@ -73,10 +74,11 @@ while ($homepageEvents->have_posts()) {
                 </a>
                 <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                    <p><?php echo wp_trim_words(
-                        get_the_content(),
-                        18,
-                    ); ?><a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
+                    <p><?php if (has_excerpt()) {
+                        echo get_the_excerpt();
+                    } else {
+                        echo wp_trim_words(get_the_content(), 18);
+                    } ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
                 </div>
             </div>
             <?php
