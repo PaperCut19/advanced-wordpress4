@@ -27,6 +27,27 @@ $homepageEvents = new WP_Query([
     ],
 ]);
 
+//If you want old events to not appear at all, use this code below instead of the regular $homepageEvents object
+// $today = date("Ymd");
+
+// $homepageEvents = new WP_Query([
+//     "posts_per_page" => 3,
+//     "post_type" => "event",
+//     "meta_key" => "event_date",
+//     "orderby" => [
+//         "meta_value_num" => "ASC",
+//         "date" => "ASC",
+//     ],
+//     "meta_query" => [
+//         [
+//             "key" => "event_date",
+//             "compare" => ">=",
+//             "value" => $today,
+//             "type" => "numeric",
+//         ],
+//     ],
+// ]);
+
 while ($homepageEvents->have_posts()) {
 
     $homepageEvents->the_post();
