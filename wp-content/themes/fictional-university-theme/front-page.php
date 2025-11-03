@@ -52,17 +52,24 @@ while ($homepageEvents->have_posts()) {
 
     $homepageEvents->the_post();
 
+    // use this code if you want to make it so that if there's no custom value for event date, the backup is publication date
+    // /** @disregard */
+    // $eventDateValue = get_field("event_date");
+    // if ($eventDateValue) {
+    //     $eventDate = new DateTime($eventDateValue);
+    //     $month = $eventDate->format("M");
+    //     $day = $eventDate->format("d");
+    // } else {
+    //     // Fallback to publication date
+    //     $month = get_the_date("M");
+    //     $day = get_the_date("d");
+    // }
+
     /** @disregard */
     $eventDateValue = get_field("event_date");
-    if ($eventDateValue) {
-        $eventDate = new DateTime($eventDateValue);
-        $month = $eventDate->format("M");
-        $day = $eventDate->format("d");
-    } else {
-        // Fallback to publication date
-        $month = get_the_date("M");
-        $day = get_the_date("d");
-    }
+    $eventDate = new DateTime($eventDateValue);
+    $month = $eventDate->format("M");
+    $day = $eventDate->format("d");
     ?>
 
         <div class="event-summary">
