@@ -38,6 +38,33 @@ function university_post_types()
         ],
         "menu_icon" => "dashicons-awards",
     ]);
+
+    // professor post type
+    register_post_type("professor", [
+        "supports" => ["title", "editor"],
+        "public" => true,
+        "show_in_rest" => true,
+        "labels" => [
+            "name" => "Professors",
+            "add_new_item" => "Add New Professor",
+            "edit_item" => "Edit Professor",
+            "all_items" => "All Professors",
+            "singular_name" => "Professor",
+        ],
+        "menu_icon" => "dashicons-welcome-learn-more",
+    ]);
 }
 
 add_action("init", "university_post_types");
+
+/*
+Code to rebuild wordpress permalink structure.
+Useful after making a new custom post type.
+COMMENT OUT THIS CODE AFTER YOU FINISH USING IT, this is because of performance reasons.
+
+function rebuild_permalinks()
+{
+    flush_rewrite_rules();
+}
+add_action("init", "rebuild_permalinks");
+*/
