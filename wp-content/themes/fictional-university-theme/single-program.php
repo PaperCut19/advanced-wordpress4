@@ -54,14 +54,20 @@ while (have_posts()) {
             ],
         ]);
 
-        while ($homepageEvents->have_posts()) {
+        if ($homepageEvents->have_posts()) {
+            echo '<hr class="section-break">';
+            echo "<h2 class='headline headline--medium'>Upcoming " .
+                get_the_title() .
+                " Events</h2>";
 
-            $homepageEvents->the_post();
-            $eventDateValue = get_field("event_date");
-            $eventDate = new DateTime($eventDateValue);
-            $month = $eventDate->format("M");
-            $day = $eventDate->format("d");
-            ?>
+            while ($homepageEvents->have_posts()) {
+
+                $homepageEvents->the_post();
+                $eventDateValue = get_field("event_date");
+                $eventDate = new DateTime($eventDateValue);
+                $month = $eventDate->format("M");
+                $day = $eventDate->format("d");
+                ?>
 
         <div class="event-summary">
                 <a class="event-summary__date t-center" href="#">
@@ -78,6 +84,7 @@ while (have_posts()) {
                 </div>
             </div>
     <?php
+            }
         }
         ?>
     </div>
