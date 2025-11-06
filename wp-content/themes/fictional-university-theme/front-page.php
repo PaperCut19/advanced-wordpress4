@@ -75,7 +75,7 @@ while ($homepageEvents->have_posts()) {
     ?>
 
         <div class="event-summary">
-                <a class="event-summary__date t-center" href="#">
+                <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
                     <span class="event-summary__month"> <?php echo $month; ?></span>
                     <span class="event-summary__day"><?php echo $day; ?></span>
                 </a>
