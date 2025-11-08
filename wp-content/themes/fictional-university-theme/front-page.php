@@ -19,13 +19,21 @@
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
 <?php
+$today = date("Ymd");
+
 $homepageEvents = new WP_Query([
     "posts_per_page" => 3,
     "post_type" => "event",
     "meta_key" => "event_date",
-    "orderby" => [
-        "meta_value_num" => "ASC",
-        "date" => "ASC",
+    "orderby" => "meta_value_num",
+    "order" => "ASC",
+    "meta_query" => [
+        [
+            "key" => "event_date",
+            "compare" => ">=",
+            "value" => $today,
+            "type" => "numeric",
+        ],
     ],
 ]);
 
@@ -53,19 +61,6 @@ $homepageEvents = new WP_Query([
 while ($homepageEvents->have_posts()) {
 
     $homepageEvents->the_post();
-
-    // use this code if you want to make it so that if there's no custom value for event date, the backup is publication date
-    // /** @disregard */
-    // $eventDateValue = get_field("event_date");
-    // if ($eventDateValue) {
-    //     $eventDate = new DateTime($eventDateValue);
-    //     $month = $eventDate->format("M");
-    //     $day = $eventDate->format("d");
-    // } else {
-    //     // Fallback to publication date
-    //     $month = get_the_date("M");
-    //     $day = get_the_date("d");
-    // }
 
     /** @disregard */
     $eventDateValue = get_field("event_date");
