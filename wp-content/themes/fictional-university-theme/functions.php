@@ -38,6 +38,14 @@ function pageBanner($args = [])
 
 function university_files()
 {
+    /** @disregard */
+    wp_enqueue_script(
+        "googleMap",
+        "//maps.googleapis.com/maps/api/js?key=" . GOOGLE_MAPS_API_KEY,
+        null,
+        "1.0",
+        true,
+    );
     wp_enqueue_script(
         "main-university-js",
         get_theme_file_uri("/build/index.js"),
@@ -136,7 +144,8 @@ add_action("pre_get_posts", "university_adjust_queries");
 
 function universityMapKey($api)
 {
-    $api["key"] = "AIzaSyATL2MlhdPDDzqbQ52qJm-nfDi3hrp4MEQ";
+    /** @disregard */
+    $api["key"] = GOOGLE_MAPS_API_KEY;
     return $api;
 }
 
