@@ -4131,9 +4131,11 @@ class Search {
   // 3. methods (functions, actions...)
   openOverlay() {
     this.searchOverlay.addClass('search-overlay--active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass("body-no-scroll");
   }
   closeOverlay() {
     this.searchOverlay.removeClass('search-overlay--active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').removeClass("body-no-scroll");
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
