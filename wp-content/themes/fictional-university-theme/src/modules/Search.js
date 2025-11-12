@@ -51,12 +51,17 @@ class Search {
         this.searchOverlay.addClass('search-overlay--active');
         $('body').addClass("body-no-scroll");
         this.isOverlayOpen = true;
+        setTimeout(() => {
+            this.searchField[0].focus();
+        }, 100);
     }
 
     closeOverlay() {
         this.searchOverlay.removeClass('search-overlay--active');
         $('body').removeClass("body-no-scroll");
         this.isOverlayOpen = false;
+        this.searchField.val('');
+        this.searchField[0].blur();
     }
 }
 

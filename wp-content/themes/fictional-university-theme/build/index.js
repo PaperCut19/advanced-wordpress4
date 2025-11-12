@@ -4158,11 +4158,16 @@ class Search {
     this.searchOverlay.addClass('search-overlay--active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass("body-no-scroll");
     this.isOverlayOpen = true;
+    setTimeout(() => {
+      this.searchField[0].focus();
+    }, 100);
   }
   closeOverlay() {
     this.searchOverlay.removeClass('search-overlay--active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').removeClass("body-no-scroll");
     this.isOverlayOpen = false;
+    this.searchField.val('');
+    this.searchField[0].blur();
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
