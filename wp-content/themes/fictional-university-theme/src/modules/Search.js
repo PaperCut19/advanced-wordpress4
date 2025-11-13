@@ -11,6 +11,7 @@ class Search {
         this.searchField = $("#search-term");
         this.events();
         this.isOverlayOpen = false;
+        this.isSpinnerVisible = false;
         this.typingTimer;
     }
 
@@ -25,12 +26,18 @@ class Search {
     // 3. methods (functions, actions...)
     typingLogic() {
         clearTimeout(this.typingTimer);
-        this.resultsDiv.html('<div class="spinner-loader"></div>');
+
+        if (!this.isSpinnerVisible) {
+            this.resultsDiv.html('<div class="spinner-loader"></div>');
+            this.isSpinnerVisible = true;
+        }
+
         this.typingTimer = setTimeout(this.getResults.bind(this), 2 * 1000);
     }
 
     getResults() {
         this.resultsDiv.html("Imagine real search results here...");
+        this.isSpinnerVisible = false;
     }
 
     keyPressDispatcher(event) {
