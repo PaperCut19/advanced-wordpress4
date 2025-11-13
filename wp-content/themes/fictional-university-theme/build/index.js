@@ -4158,7 +4158,7 @@ class Search {
     this.isSpinnerVisible = false;
   }
   keyPressDispatcher(event) {
-    if (event.keyCode == 83 && !this.isOverlayOpen) {
+    if (event.keyCode == 83 && !this.isOverlayOpen && !jquery__WEBPACK_IMPORTED_MODULE_0___default()("input, textarea").is(':focus')) {
       this.openOverlay();
       event.preventDefault();
       console.log("openOverlay on");
