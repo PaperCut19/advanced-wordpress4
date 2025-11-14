@@ -4154,10 +4154,23 @@ class Search {
     this.previousValue = this.searchField.val();
   }
   getResults() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON('/wp-json/wp/v2/posts?search=' + this.searchField.val(), function (posts) {
-      alert(posts[0].title.rendered);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON('/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
+      this.resultsDiv.html(`
+                <h2 class="search-overlay__section-title">General Information</h2>
+                <ul class="link-list min-list"> 
+                    <li><a href="${posts[0].link}">${posts[0].title.rendered}</a></li>
+                </ul>            
+                `);
     });
   }
+
+  /*
+  <h2 class="search-overlay__section-title">General Information</h2>
+  <ul class="link-list min-list"> 
+      <li><a href="#">Click me</a></li>
+  </ul>
+  */
+
   keyPressDispatcher(event) {
     if (event.keyCode == 83 && !this.isOverlayOpen && !jquery__WEBPACK_IMPORTED_MODULE_0___default()("input, textarea").is(':focus')) {
       this.openOverlay();
