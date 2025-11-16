@@ -45,15 +45,22 @@ class Search {
   }
 
   getResults() {
-    $.getJSON(
-      universityData.root_url +
-        "/wp-json/wp/v2/posts?search=" +
-        this.searchField.val(),
-      (posts) => {
-        $.getJSON(universityData.root_url +
-        "/wp-json/wp/v2/pages?search=" +
-        this.searchField.val(), pages => {
-          var combinedResults = posts.concat(pages);
+
+    /* the code below can help reduce repetitive code when giving .getJSON a URL
+    const urlBuilder = (postType) => {
+      return universityData.root_url + "/wp-json/wp/v2/" + postType + "?search=" + this.searchField.val()
+    }
+
+    to use the code, do 
+    $.getJSON(urlBuilder('posts')), 
+    $.getJSON(urlBuilder('pages'))
+    */
+
+    $.when(
+      $.getJSON(universityData.root_url + "/wp-json/wp/v2/posts?search=" + this.searchField.val()), 
+      $.getJSON(universityData.root_url + "/wp-json/wp/v2/pages?search=" + this.searchField.val())
+    ).then((posts, pages) => {
+      var combinedResults = posts[0].concat(pages[0]);
           this.resultsDiv.html(`
                 <h2 class="search-overlay__section-title">General Information</h2>
                 ${combinedResults.length ? '<ul class="link-list min-list">' : "<p>No general information matches that search.</p>"}
@@ -61,17 +68,8 @@ class Search {
                 ${combinedResults.length ? "</ul>" : ""}            
                 `);
           this.isSpinnerVisible = false;
-        });
-      },
-    );
+    });
   }
-
-  /*
-      <h2 class="search-overlay__section-title">General Information</h2>
-      <ul class="link-list min-list"> 
-          <li><a href="#">Click me</a></li>
-      </ul>
-      */
 
   keyPressDispatcher(event) {
     if (
