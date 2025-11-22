@@ -39,6 +39,8 @@ function universitySearchResults($data)
             array_push($results["generalInfo"], [
                 "title" => get_the_title(),
                 "permalink" => get_the_permalink(),
+                "postType" => get_post_type(),
+                "authorName" => get_the_author(),
             ]);
         }
         if (get_post_type() == "professor") {
