@@ -41,7 +41,7 @@ function university_post_types()
 
     // program post type
     register_post_type("program", [
-        "supports" => ["title", "editor"],
+        "supports" => ["title"],
         "rewrite" => [
             "slug" => "programs",
         ],
