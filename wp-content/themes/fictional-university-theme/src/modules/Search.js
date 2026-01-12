@@ -139,6 +139,8 @@ class Search {
     setTimeout(() => {
       this.searchField[0].focus();
     }, 100);
+    console.log("new version of Search.js!");
+    return false;
   }
 
   closeOverlay() {
