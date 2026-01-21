@@ -225,3 +225,10 @@ function ourLoginCSS()
         get_theme_file_uri("/build/index.css"),
     );
 }
+
+add_filter('login_headertitle', 'ourLoginTitle');
+
+function ourLoginTitle()
+{
+    return get_bloginfo('name');
+}
