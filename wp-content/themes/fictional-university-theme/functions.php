@@ -27,18 +27,14 @@ function pageBanner($args = [])
             !is_archive() and
             !is_home()
         ) {
-            $args["photo"] = get_field("page_banner_background_image")["sizes"][
-                "pageBanner"
-            ];
+            $args["photo"] = get_field("page_banner_background_image")["sizes"]["pageBanner"];
         } else {
             $args["photo"] = get_theme_file_uri("/images/ocean.jpg");
         }
     }
-    ?>
-<div class="page-banner">
-        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args[
-            "photo"
-        ]; ?>)"></div>
+?>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args["photo"]; ?>)"></div>
         <div class="page-banner__content container container--narrow">
             <h1 class="page-banner__title"><?php echo $args["title"]; ?></h1>
             <div class="page-banner__intro">
@@ -179,10 +175,11 @@ add_filter("acf/fields/google_map/api", "universityMapKey");
 //redirect subscriber accounts out of admin and onto homepage
 add_action('admin_init', 'redirectSubsToFrontend');
 
-function redirectSubsToFrontend() {
+function redirectSubsToFrontend()
+{
     $ourCurrentUser = wp_get_current_user();
 
-    if (count($ourCurrentUser->roles) == 1 AND $ourCurrentUser->roles[0] == 'subscriber') {
+    if (count($ourCurrentUser->roles) == 1 and $ourCurrentUser->roles[0] == 'subscriber') {
         wp_redirect(site_url('/'));
         exit;
     }
@@ -190,10 +187,19 @@ function redirectSubsToFrontend() {
 
 add_action('wp_loaded', 'noSubsAdminBar');
 
-function noSubsAdminBar() {
+function noSubsAdminBar()
+{
     $ourCurrentUser = wp_get_current_user();
 
-    if (count($ourCurrentUser->roles) == 1 AND $ourCurrentUser->roles[0] == 'subscriber') {
+    if (count($ourCurrentUser->roles) == 1 and $ourCurrentUser->roles[0] == 'subscriber') {
         show_admin_bar(false);
     }
+}
+
+// customize login screen
+add_filter('login_headerurl', 'ourHeaderUrl');
+
+function ourHeaderUrl()
+{
+    return esc_url(site_url('/'));
 }
