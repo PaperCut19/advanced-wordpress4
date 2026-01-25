@@ -4122,6 +4122,7 @@ class MyNotes {
   }
   events() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-note").on("click", this.deleteNote);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-note").on("click", this.editNote);
   }
 
   // methods will go here
@@ -4143,6 +4144,11 @@ class MyNotes {
         console.log(response);
       }
     });
+  }
+  editNote(event) {
+    let thisNote = jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).parents("li");
+    thisNote.find(".note-title-field, .note-body-field").removeAttr("readonly").addClass("note-active-field");
+    thisNote.find(".update-note").addClass("update-note--visible");
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyNotes);
