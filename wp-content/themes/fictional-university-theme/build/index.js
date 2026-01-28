@@ -4174,7 +4174,8 @@ class MyNotes {
   createNote(event) {
     let ourNewPost = {
       title: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val(),
-      content: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val()
+      content: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val(),
+      status: "publish"
     };
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       beforeSend: xhr => {

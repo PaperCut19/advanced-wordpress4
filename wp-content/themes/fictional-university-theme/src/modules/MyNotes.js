@@ -67,6 +67,7 @@ class MyNotes {
     let ourNewPost = {
       title: $(".new-note-title").val(),
       content: $(".new-note-body").val(),
+      status: "publish",
     };
 
     $.ajax({
