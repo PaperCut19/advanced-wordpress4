@@ -79,6 +79,8 @@ function university_post_types()
 
     // note post type
     register_post_type("note", [
+        'capability_type' => 'note',
+        'map_meta_cap' => true,
         "supports" => ["title", "editor"],
         "public" => false,
         'show_ui' => true,
