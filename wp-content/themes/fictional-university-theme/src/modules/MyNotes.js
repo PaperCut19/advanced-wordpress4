@@ -27,6 +27,9 @@ class MyNotes {
         thisNote.slideUp();
         console.log("congrats");
         console.log(response);
+        if (response.userNoteCount < 5) {
+          $(".note-limit-message").removeClass("active");
+        }
       },
       error: (response) => {
         console.log("sorry");
