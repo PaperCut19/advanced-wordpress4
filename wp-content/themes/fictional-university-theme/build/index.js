@@ -4102,15 +4102,18 @@ class Like {
   ourClickDispatcher(event) {
     let currentLikeBox = jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).closest(".like-box");
     if (currentLikeBox.data("exists") == "yes") {
-      this.deleteLike();
+      this.deleteLike(currentLikeBox);
     } else {
-      this.createLike();
+      this.createLike(currentLikeBox);
     }
   }
-  createLike() {
+  createLike(currentLikeBox) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       url: universityData.root_url + "/wp-json/university/v1/manageLike",
       type: "POST",
+      data: {
+        professorId: currentLikeBox.data("professor")
+      },
       success: response => {
         console.log(response);
       },
