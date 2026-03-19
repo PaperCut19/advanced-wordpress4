@@ -74,6 +74,9 @@ wp-config.php
 # uncomment the next line
 /wp-content/plugins/*
 
+# CRISTIAN: do not ignore my custom plugin
+!/wp-content/plugins/our-first-unique-plugin
+
 # All themes
 # Note: If you wish to whitelist themes,
 # uncomment the next line
