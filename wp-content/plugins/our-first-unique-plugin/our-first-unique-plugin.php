@@ -22,9 +22,18 @@ class WordCountAndTimePlugin
     function settings()
     {
         add_settings_section('wcp_first_section', null, null, 'word-count-settings-page');
+
         add_settings_field('wcp_location', 'Display Location', [$this, 'locationHTML'], 'word-count-settings-page', 'wcp_first_section');
         register_setting('wordcountplugin', 'wcp_location', ['sanitize_callback' => 'sanitize_text_field', 'default' => '0']);
+
+        add_settings_field('wcp_headline', 'Headline Text', [$this, 'headlineHTML'], 'word-count-settings-page', 'wcp_first_section');
+        register_setting('wordcountplugin', 'wcp_headline', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Post Statistics']);
     }
+
+    function headlineHTML()
+    { ?>
+        <input type="text" name="wcp_headline" value="<?php echo esc_attr(get_option('wcp_headline')) ?>">
+    <?php }
 
     function locationHTML()
     { ?>
