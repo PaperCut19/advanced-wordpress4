@@ -25,7 +25,7 @@ class WordCountAndTimePlugin
 
         //wcp_location
         add_settings_field('wcp_location', 'Display Location', [$this, 'locationHTML'], 'word-count-settings-page', 'wcp_first_section');
-        register_setting('wordcountplugin', 'wcp_location', ['sanitize_callback' => 'sanitize_text_field', 'default' => '0']);
+        register_setting('wordcountplugin', 'wcp_location', ['sanitize_callback' => [$this, 'sanitizeLocation'], 'default' => '0']);
 
         //wcp_headline
         add_settings_field('wcp_headline', 'Headline Text', [$this, 'headlineHTML'], 'word-count-settings-page', 'wcp_first_section');
@@ -50,6 +50,16 @@ class WordCountAndTimePlugin
         <input type="checkbox" name="wcp_wordcount" value="1" <?php checked(get_option('wcp_wordcount'), '1') ?>>
     <?php }
     */
+
+    function sanitizeLocation($input)
+    {
+        if ($input != 0 and $input != '1') {
+            add_settings_error('wcp_location', 'wcp_location_error', 'Display location must be either beginning or end.');
+            return get_option('wcp_location');
+        }
+
+        return $input;
+    }
 
     function checkboxHTML($args)
     { ?>
