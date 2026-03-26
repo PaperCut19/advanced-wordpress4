@@ -31,7 +31,44 @@ class WordCountAndTimePlugin
 
     function createHTML($content)
     {
-        return $content . 'hello';
+        $html = '<h3>' . get_option('wcp_headline', 'Post Statistics') . '</h3><p>';
+
+        // get word count once because both wordcount and read time will need it.
+        if (get_option('wcp_wordcount', '1') or get_option('wcp_readtime', '1')) {
+            $wordCount = str_word_count(strip_tags($content));
+        }
+
+        if (get_option('wcp_wordcount', '1')) {
+            $html .= 'This post has ' . $wordCount . ' words.<br>';
+        }
+
+        if (get_option('wcp_charactercount', '1')) {
+            $html .= 'This post has ' . strlen(strip_tags($content)) . ' characters.<br>';
+        }
+
+        if (get_option('wcp_readtime', '1')) {
+
+            /*
+             I added my own custom code because I did not like how, if the time to read was 0, then it would say 0 minutes to read.
+             the original code was:
+             
+             $html .= 'This post will take about ' . round($wordCount/225) . ' minute(s) to read.<br>';
+             */
+
+            if (round($wordCount / 225) == 0) {
+                $wordCountTimeToReadPhrase = 'This post will take about ' . round(($wordCount / 225) * 60) . ' seconds to read.<br>';
+            } else {
+                $wordCountTimeToReadPhrase = 'This post will take about ' . round($wordCount / 225) . ' minute(s) to read.<br>';
+            }
+
+            $html .= $wordCountTimeToReadPhrase;
+        }
+
+        if (get_option('wcp_location', '0') == '0') {
+            return $html . $content;
+        } else {
+            return $content . $html;
+        }
     }
 
     function settings()
