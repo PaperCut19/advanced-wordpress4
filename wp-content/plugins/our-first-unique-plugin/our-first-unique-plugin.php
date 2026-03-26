@@ -31,7 +31,7 @@ class WordCountAndTimePlugin
 
     function createHTML($content)
     {
-        $html = '<h3>' . get_option('wcp_headline', 'Post Statistics') . '</h3><p>';
+        $html = '<h3>' . esc_html(get_option('wcp_headline', 'Post Statistics')) . '</h3><p>';
 
         // get word count once because both wordcount and read time will need it.
         if (get_option('wcp_wordcount', '1') or get_option('wcp_readtime', '1')) {
@@ -63,6 +63,8 @@ class WordCountAndTimePlugin
 
             $html .= $wordCountTimeToReadPhrase;
         }
+
+        $html .= '</p>';
 
         if (get_option('wcp_location', '0') == '0') {
             return $html . $content;
