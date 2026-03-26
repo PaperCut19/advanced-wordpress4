@@ -22,7 +22,7 @@ class WordCountAndTimePlugin
 
     function ifWrap($content)
     {
-        if ((is_main_query() and is_single()) and (get_option('wcp_wordcount', '1') or get_option('wcp_charactercount', '1') or get_option('wcp_readtime', '1'))) {
+        if (is_main_query() and is_single() and (get_option('wcp_wordcount', '1') or get_option('wcp_charactercount', '1') or get_option('wcp_readtime', '1'))) {
             return $this->createHTML($content);
         }
 
