@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Our Test Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-27 21:18+0000\n"
-"PO-Revision-Date: 2026-03-27 21:21+0000\n"
+"PO-Revision-Date: 2026-03-27 21:23+0000\n"
 "Last-Translator: CrisBaconDog\n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -33,12 +33,12 @@ msgstr ""
 
 #: our-first-unique-plugin.php:50
 msgid "This post has"
-msgstr ""
+msgstr "Esta publicación tiene"
 
 #: our-first-unique-plugin.php:146
 msgid "Word Count"
-msgstr ""
+msgstr "Recuento de Palabras"
 
 #: our-first-unique-plugin.php:50
 msgid "words"
-msgstr ""
+msgstr "palabras"
