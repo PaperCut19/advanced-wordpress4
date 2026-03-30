@@ -4,7 +4,7 @@
  Plugin Name: Our Test Plugin
  Description: A truly amazing plugin.
  Version: 1.0
- Author: Cristian
+ Author: Cristian Sanchez-Espinosa
  Author URI: https://sanchez-labs.com
  Text Domain: wcpdomain
  Domain Path: /languages
