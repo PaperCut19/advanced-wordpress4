@@ -20,6 +20,7 @@ class OurWordFilterPlugin
     function ourMenu()
     {
         add_menu_page('Words To Filter', 'Word Filter', 'manage_options', 'ourwordfilter', [$this, 'wordFilterPage'], 'dashicons-smiley', 100);
+        add_submenu_page('ourwordfilter', 'Words to Filter', 'Words List', 'manage_options', 'ourwordfilter', [$this, 'wordFilterPage']);
         add_submenu_page('ourwordfilter', 'Word Filter Options', 'Options', 'manage_options', 'word-filter-options', [$this, 'optionsSubPage']);
     }
 
@@ -30,7 +31,7 @@ class OurWordFilterPlugin
 
     function optionsSubPage()
     { ?>
-        Hello world.
+        Hello world from the options page.
 <?php }
 }
 
