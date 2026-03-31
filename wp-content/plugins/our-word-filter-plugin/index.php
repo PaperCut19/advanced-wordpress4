@@ -3,7 +3,7 @@
 /*
     Plugin Name: Our Word Filter Plugin
     Description: Replaces a list of words.
-    Version 1.0
+    Version: 1.0
     Author: Cristian Sanchez-Espinosa
     Author URI: https://sanchez-labs.com
 */
