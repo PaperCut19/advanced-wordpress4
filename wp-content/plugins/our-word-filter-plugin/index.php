@@ -32,12 +32,19 @@ class OurWordFilterPlugin
 
     function handleForm()
     {
-        update_option('plugin_words_to_filter', $_POST['plugin_words_to_filter']); ?>
+        if (wp_verify_nonce($_POST['ourNonce'], 'saveFilterWords') and current_user_can('manage_options')) {
+            update_option('plugin_words_to_filter', sanitize_text_field($_POST['plugin_words_to_filter'])) ?>
 
-        <div class="updated">
-            <p>Your filtered words were saved.</p>
-        </div>
-    <?php }
+            <div class="updated">
+                <p>Your filtered words were saved.</p>
+            </div>
+
+        <?php } else { ?>
+            <div class="error">
+                <p>Sorry, you do not have permission to perform that action</p>
+            </div>
+        <?php }
+    }
 
     function wordfilterpage()
     { ?>
@@ -46,6 +53,7 @@ class OurWordFilterPlugin
             <?php if (isset($_POST['justsubmitted']) == 'true') $this->handleForm() ?>
             <form method="POST">
                 <input type="hidden" name="justsubmitted" value="true">
+                <?php wp_nonce_field('saveFilterWords', 'ourNonce') ?>
                 <label for="plugin_words_to_filter">
                     <p>Enter a <strong>comma-separated</strong> list of words to filter from your site's content.</p>
                 </label>
