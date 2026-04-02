@@ -15,8 +15,22 @@ class OurWordFilterPlugin
     function __construct()
     {
         add_action('admin_menu', [$this, 'ourMenu']);
+        add_action('admin_init', [$this, 'ourSettings']);
         if (get_option('plugin_words_to_filter')) add_filter('the_content', [$this, 'filterLogic']);
     }
+
+    function ourSettings()
+    {
+        add_settings_section('replacement-text-section', null, null, 'word-filter-options');
+        register_setting('replacementFields', 'replacementText');
+        add_settings_field('replacement-text', 'Filtered Text', [$this, 'replacementFieldHTML'], 'word-filter-options', 'replacement-text-section');
+    }
+
+    function replacementFieldHTML()
+    { ?>
+        <input type="text" name="replacementText" value="<?php echo esc_attr(get_option('replacementText', '***')) ?>">
+        <p class="description">Leave blank to simply remove the filtered words.</p>
+        <?php }
 
     function filterLogic($content)
     {
@@ -76,7 +90,16 @@ class OurWordFilterPlugin
 
     function optionsSubPage()
     { ?>
-        Hello world from the options page.
+        <div class="wrap">
+            <h1>Word Filter Options</h1>
+            <form action="options.php" method="POST">
+                <?php
+                settings_fields('replacementFields');
+                do_settings_sections('word-filter-options');
+                submit_button();
+                ?>
+            </form>
+        </div>
 <?php }
 }
 
