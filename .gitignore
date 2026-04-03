@@ -77,6 +77,7 @@ wp-config.php
 # CRISTIAN: do not ignore my custom plugin
 !/wp-content/plugins/our-first-unique-plugin
 !/wp-content/plugins/our-word-filter-plugin
+!/wp-content/plugins/are-you-paying-attention
 
 # All themes
 # Note: If you wish to whitelist themes,
