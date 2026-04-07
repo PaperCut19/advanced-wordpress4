@@ -102,9 +102,7 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
     });
   },
   save: function (props) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-      children: ["The sky color is ", props.attributes.skyColor, " and the grass color is", " ", props.attributes.grassColor, "."]
-    });
+    return null;
   }
 });
 })();

@@ -27,11 +27,6 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
     );
   },
   save: function (props) {
-    return (
-      <p>
-        The sky color is {props.attributes.skyColor} and the grass color is{" "}
-        {props.attributes.grassColor}.
-      </p>
-    );
+    return null;
   },
 });
