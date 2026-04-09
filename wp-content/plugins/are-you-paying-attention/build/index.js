@@ -103,6 +103,10 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
     answers: {
       type: "array",
       default: [""]
+    },
+    correctAnswer: {
+      type: "number",
+      default: undefined
     }
   },
   edit: EditComponent,
@@ -122,6 +126,16 @@ function EditComponent(props) {
     });
     props.setAttributes({
       answers: newAnswers
+    });
+    if (props.attributes.correctAnswer == indexToDelete) {
+      props.setAttributes({
+        correctAnswer: undefined
+      });
+    }
+  }
+  function markAsCorrect(index) {
+    props.setAttributes({
+      correctAnswer: index
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -155,9 +169,10 @@ function EditComponent(props) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+            onClick: () => markAsCorrect(index),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
               className: "mark-as-correct",
-              icon: "star-empty"
+              icon: props.attributes.correctAnswer == index ? "star-filled" : "star-empty"
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
