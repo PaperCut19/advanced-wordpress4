@@ -54,6 +54,7 @@ function EditComponent(props) {
                   newAnswers[index] = newValue;
                   props.setAttributes({ answers: newAnswers });
                 }}
+                autoFocus={answer == undefined}
               />
             </FlexBlock>
             <FlexItem>
@@ -78,7 +79,7 @@ function EditComponent(props) {
         variant="primary"
         onClick={() => {
           props.setAttributes({
-            answers: props.attributes.answers.concat([""]),
+            answers: props.attributes.answers.concat([undefined]),
           });
         }}
       >

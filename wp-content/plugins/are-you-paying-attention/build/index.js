@@ -150,7 +150,8 @@ function EditComponent(props) {
               props.setAttributes({
                 answers: newAnswers
               });
-            }
+            },
+            autoFocus: answer == undefined
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
@@ -172,7 +173,7 @@ function EditComponent(props) {
       variant: "primary",
       onClick: () => {
         props.setAttributes({
-          answers: props.attributes.answers.concat([""])
+          answers: props.attributes.answers.concat([undefined])
         });
       },
       children: "Add another answer"
