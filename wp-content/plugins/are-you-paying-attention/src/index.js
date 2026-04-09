@@ -27,6 +27,13 @@ function EditComponent(props) {
     props.setAttributes({ question: value });
   }
 
+  function deleteAnswer(indexToDelete) {
+    const newAnswers = props.attributes.answers.filter(function (x, index) {
+      return index != indexToDelete;
+    });
+    props.setAttributes({ answers: newAnswers });
+  }
+
   return (
     <div className="paying-attention-edit-block">
       <TextControl
@@ -55,7 +62,11 @@ function EditComponent(props) {
               </Button>
             </FlexItem>
             <FlexItem>
-              <Button variant="link" className="attention-delete">
+              <Button
+                variant="link"
+                className="attention-delete"
+                onClick={() => deleteAnswer(index)}
+              >
                 Delete
               </Button>
             </FlexItem>

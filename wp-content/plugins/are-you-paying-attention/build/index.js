@@ -116,6 +116,14 @@ function EditComponent(props) {
       question: value
     });
   }
+  function deleteAnswer(indexToDelete) {
+    const newAnswers = props.attributes.answers.filter(function (x, index) {
+      return index != indexToDelete;
+    });
+    props.setAttributes({
+      answers: newAnswers
+    });
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "paying-attention-edit-block",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
@@ -155,6 +163,7 @@ function EditComponent(props) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
             variant: "link",
             className: "attention-delete",
+            onClick: () => deleteAnswer(index),
             children: "Delete"
           })
         })]
