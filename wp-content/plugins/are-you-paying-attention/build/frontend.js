@@ -125,12 +125,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const divsToUpdate = document.querySelectorAll(".paying-attention-update-me");
-  divsToUpdate.forEach(function (div) {
-    const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(div);
-    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Quiz, {}));
-  });
+const divsToUpdate = document.querySelectorAll(".paying-attention-update-me");
+divsToUpdate.forEach(function (div) {
+  const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(div);
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Quiz, {}));
 });
 function Quiz() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
