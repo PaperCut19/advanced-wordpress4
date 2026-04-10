@@ -128,13 +128,24 @@ __webpack_require__.r(__webpack_exports__);
 const divsToUpdate = document.querySelectorAll(".paying-attention-update-me");
 divsToUpdate.forEach(function (div) {
   const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(div);
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Quiz, {}));
+  const data = JSON.parse(div.querySelector("pre").innerHTML);
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Quiz, {
+    ...data
+  }));
   div.classList.remove("paying-attention-update-me");
 });
-function Quiz() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+function Quiz(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "paying-attention-frontend",
-    children: "Hello from React"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: props.question
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+      children: props.answers.map(function (answer) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: answer
+        });
+      })
+    })]
   });
 }
 })();
