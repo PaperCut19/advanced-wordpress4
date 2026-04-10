@@ -139,6 +139,20 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
     bgColor: {
       type: "string",
       default: "#EBEBEB"
+    },
+    theAlignment: {
+      type: "string",
+      default: "left"
+    }
+  },
+  description: "Give your audience a chance to prove their comprehension.",
+  example: {
+    attributes: {
+      question: "What is my name?",
+      answers: ["Meowsalot", "Barksalot", "Purrsloud", "Brad"],
+      correctAnswer: 3,
+      bgColor: "center",
+      theAlignment: "#CFE8F1"
     }
   },
   edit: EditComponent,
@@ -175,7 +189,14 @@ function EditComponent(props) {
     style: {
       backgroundColor: props.attributes.bgColor
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
+        value: props.attributes.theAlignment,
+        onChange: x => props.setAttributes({
+          theAlignment: x
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
         title: "Background Color",
         initialOpen: true,
