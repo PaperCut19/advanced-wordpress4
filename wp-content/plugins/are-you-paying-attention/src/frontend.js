@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const divsToUpdate = document.querySelectorAll(".paying-attention-update-me");
 
   divsToUpdate.forEach(function (div) {
-    // const root = createRoot(div);
-    // root.render(<Quiz />);
-    div.innerHTML = "hello";
+    const root = createRoot(div);
+    root.render(<Quiz />);
   });
 });
 
