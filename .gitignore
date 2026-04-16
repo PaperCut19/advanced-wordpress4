@@ -80,6 +80,7 @@ wp-config.php
 !/wp-content/plugins/are-you-paying-attention
 !/wp-content/plugins/featured-professor
 !/wp-content/plugins/pets-custom-post-type
+!/wp-content/plugins/new-database-table
 
 # All themes
 # Note: If you wish to whitelist themes,
