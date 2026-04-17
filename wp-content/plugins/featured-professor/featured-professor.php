@@ -4,7 +4,7 @@
   Plugin Name: Featured Professor Block Type
   Version: 1.0
   Author: Cristian Sanchez-Espinosa
-  Author URI: https://www.udemy.com/user/bradschiff/
+  Author URI: https://sanchez-labs.com
 */
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
