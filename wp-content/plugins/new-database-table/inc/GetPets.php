@@ -2,6 +2,10 @@
 
 class GetPets
 {
+    public $pets;
+    public $count;
+    public $args;
+
     function __construct()
     {
         global $wpdb;

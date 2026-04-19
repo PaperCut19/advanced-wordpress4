@@ -1,7 +1,9 @@
 <?php
 
 require_once plugin_dir_path(__FILE__) . 'GetPets.php';
+/** @var GetPets $getPets */
 $getPets = new GetPets();
+
 
 get_header(); ?>
 

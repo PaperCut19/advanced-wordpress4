@@ -12,6 +12,10 @@ require_once plugin_dir_path(__FILE__) . 'inc/generatePet.php';
 
 class PetAdoptionTablePlugin
 {
+  public $charset;
+  public $tablename;
+
+
   function __construct()
   {
     global $wpdb;
