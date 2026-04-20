@@ -3,8 +3,8 @@
 /*
   Plugin Name: Pet Adoption (New DB Table)
   Version: 1.0
-  Author: Brad
-  Author URI: https://www.udemy.com/user/bradschiff/
+  Author: Cristian
+  Author URI: https://sanchez-labs.com
 */
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly

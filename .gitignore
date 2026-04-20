@@ -87,6 +87,7 @@ wp-config.php
 # uncomment the next line
 /wp-content/themes/*
 !/wp-content/themes/fictional-university-theme
+!/wp-content/themes/fictional-block-theme
 
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,wordpress
