@@ -112,6 +112,8 @@ function university_features()
     add_image_size("professorLandscape", 400, 260, true);
     add_image_size("professorPortrait", 480, 650, true);
     add_image_size("pageBanner", 1500, 350, true);
+    add_theme_support('editor-styles');
+    add_editor_style(['https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i', 'build/style-index.css', 'build/index.css']);
 }
 
 add_action("after_setup_theme", "university_features");
