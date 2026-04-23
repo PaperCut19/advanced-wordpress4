@@ -1,14 +1,20 @@
+import ourColors from "../includes/ourColors";
 import { link, linkOff } from "@wordpress/icons";
 import {
   ToolbarGroup,
   ToolbarButton,
   Popover,
   Button,
+  PanelBody,
+  PanelRow,
+  ColorPalette,
 } from "@wordpress/components";
 import {
   RichText,
   BlockControls,
   __experimentalLinkControl as LinkControl,
+  InspectorControls,
+  getColorObjectByColorValue,
 } from "@wordpress/block-editor";
 import { registerBlockType } from "@wordpress/blocks";
 import { useState } from "@wordpress/element";
@@ -18,7 +24,8 @@ registerBlockType("ourblocktheme/genericbutton", {
   attributes: {
     text: { type: "string" },
     size: { type: "string", default: "large" },
-    linkObject: { type: "object" },
+    linkObject: { type: "object", default: { url: "" } },
+    colorName: { type: "string", default: "blue" },
   },
   edit: EditComponent,
   save: SaveComponent,
@@ -37,6 +44,16 @@ function EditComponent(props) {
 
   function handleLinkChange(newLink) {
     props.setAttributes({ linkObject: newLink });
+  }
+
+  const currentColorValue = ourColors.filter((color) => {
+    return color.name == props.attributes.colorName;
+  })[0].color;
+
+  function handleColorChange(colorCode) {
+    //from the hex value that the color palette gives us, we need to find its color name
+    const { name } = getColorObjectByColorValue(ourColors, colorCode);
+    props.setAttributes({ colorName: name });
   }
 
   return (
@@ -67,9 +84,22 @@ function EditComponent(props) {
           </ToolbarButton>
         </ToolbarGroup>
       </BlockControls>
+      <InspectorControls>
+        <PanelBody title="Color" initialOpen={true}>
+          <PanelRow>
+            <ColorPalette
+              colors={ourColors}
+              value={currentColorValue}
+              onChange={handleColorChange}
+              disableCustomColors={true}
+              clearable={false}
+            />
+          </PanelRow>
+        </PanelBody>
+      </InspectorControls>
       <RichText
         tagName="a"
-        className={`btn btn--${props.attributes.size} btn--blue`}
+        className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`}
         value={props.attributes.text}
         onChange={handleTextChange}
         allowedFormats={[]}
@@ -98,7 +128,7 @@ function SaveComponent(props) {
   return (
     <a
       href={props.attributes.linkObject.url}
-      className={`btn btn--${props.attributes.size} btn--blue`}
+      className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`}
       value={props.attributes.text}
     >
       {props.attributes.text}
