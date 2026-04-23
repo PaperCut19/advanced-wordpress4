@@ -1,25 +1,51 @@
-import { ToolbarGroup, ToolbarButton } from "@wordpress/components";
-import { RichText, BlockControls } from "@wordpress/block-editor";
+import { link, linkOff } from "@wordpress/icons";
+import {
+  ToolbarGroup,
+  ToolbarButton,
+  Popover,
+  Button,
+} from "@wordpress/components";
+import {
+  RichText,
+  BlockControls,
+  __experimentalLinkControl as LinkControl,
+} from "@wordpress/block-editor";
 import { registerBlockType } from "@wordpress/blocks";
+import { useState } from "@wordpress/element";
 
 registerBlockType("ourblocktheme/genericbutton", {
   title: "Generic Button",
   attributes: {
     text: { type: "string" },
     size: { type: "string", default: "large" },
+    linkObject: { type: "object" },
   },
   edit: EditComponent,
   save: SaveComponent,
 });
 
 function EditComponent(props) {
+  const [isLinkPickerVisible, setIsLinkPickerVisible] = useState(false);
+
   function handleTextChange(x) {
     props.setAttributes({ text: x });
+  }
+
+  function buttonHandler() {
+    setIsLinkPickerVisible((prev) => !prev);
+  }
+
+  function handleLinkChange(newLink) {
+    props.setAttributes({ linkObject: newLink });
   }
 
   return (
     <>
       <BlockControls>
+        <ToolbarGroup>
+          <ToolbarButton onClick={buttonHandler} icon={link} />
+        </ToolbarGroup>
+
         <ToolbarGroup>
           <ToolbarButton
             isPressed={props.attributes.size === "large"}
@@ -43,11 +69,27 @@ function EditComponent(props) {
       </BlockControls>
       <RichText
         tagName="a"
-        className={`btn btn--${props.attributes.size}`}
+        className={`btn btn--${props.attributes.size} btn--blue`}
         value={props.attributes.text}
         onChange={handleTextChange}
         allowedFormats={[]}
       />
+      {isLinkPickerVisible && (
+        <Popover placement="bottom">
+          <LinkControl
+            setting={[]}
+            value={props.attributes.linkObject}
+            onChange={handleLinkChange}
+          />
+          <Button
+            variant="primary"
+            onClick={() => setIsLinkPickerVisible(false)}
+            style={{ display: "block", width: "100%" }}
+          >
+            Confirm Link
+          </Button>
+        </Popover>
+      )}
     </>
   );
 }
@@ -55,9 +97,11 @@ function EditComponent(props) {
 function SaveComponent(props) {
   return (
     <a
-      href="#"
-      className={`btn btn--${props.attributes.size}`}
+      href={props.attributes.linkObject.url}
+      className={`btn btn--${props.attributes.size} btn--blue`}
       value={props.attributes.text}
-    ></a>
+    >
+      {props.attributes.text}
+    </a>
   );
 }
