@@ -309,6 +309,7 @@ function EditComponent(props) {
       allowedFormats: []
     }), isLinkPickerVisible && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Popover, {
       placement: "bottom",
+      onFocusOutside: () => setIsLinkPickerVisible(false),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.__experimentalLinkControl, {
         setting: [],
         value: props.attributes.linkObject,

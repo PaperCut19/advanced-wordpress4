@@ -105,7 +105,10 @@ function EditComponent(props) {
         allowedFormats={[]}
       />
       {isLinkPickerVisible && (
-        <Popover placement="bottom">
+        <Popover
+          placement="bottom"
+          onFocusOutside={() => setIsLinkPickerVisible(false)}
+        >
           <LinkControl
             setting={[]}
             value={props.attributes.linkObject}
