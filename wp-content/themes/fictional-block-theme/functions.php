@@ -276,9 +276,11 @@ class JSXBlock
 {
     public $name;
     public $renderCallback;
+    public $data;
 
-    function __construct($name, $renderCallback = null)
+    function __construct($name, $renderCallback = null, $data = null)
     {
+        $this->data = $data;
         $this->name = $name;
         $this->renderCallback = $renderCallback;
         add_action('init', [$this, 'onInit']);
@@ -295,6 +297,10 @@ class JSXBlock
     {
         wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", ['wp-blocks', 'wp-editor']);
 
+        if ($this->data) {
+            wp_localize_script($this->name, $this->name, $this->data);
+        }
+
         $ourArgs = [
             'editor_script' => $this->name
         ];
@@ -307,6 +313,6 @@ class JSXBlock
     }
 }
 
-new JSXBlock('banner', true);
+new JSXBlock('banner', true, ['fallbackimage' => get_theme_file_uri('/images/library-hero.jpg')]);
 new JSXBlock('genericheading');
 new JSXBlock('genericbutton');
